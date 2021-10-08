@@ -10,7 +10,7 @@ googleAnalytics = ""
 theme = "hugo-minimalist-theme"
 
 [params]
-    site_author = "John Doe"
+    site_author = "Roger Yu"
     site_description = "The awesome blog of John Doe."
     location = "Earth"
     # Link custom assets relative to /static
