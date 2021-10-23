@@ -8,7 +8,7 @@ before_script:
 - hugo
 script:
 - aws s3 sync public/ s3://roger-yu.com --acl public-read --delete
-- aws cloudfront create-invalidation --distribution-id E25KNJZ1CGJ3BY --paths "/*""
+- aws cloudfront create-invalidation --distribution-id E25KNJZ1CGJ3BY --paths "/*"
 branches:
  only:
  - main
