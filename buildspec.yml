@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - wget https://golang.org/dl/go1.16.7.linux-amd64.tar.gz #installs Go 1.16.7
+      - tar -xzf go1.16.7.linux-amd64.tar.gz #extracts gzipped archive file
+      - mv go /usr/local #moves go to /usr/local
+      - export GOROOT=/usr/local/go #adds go to env variable
+      - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH #adds go to path
+      - go version #print version of go to console
+      - yum install asciidoctor -y #my hugo template needs asciidoctor
+      - mkdir $HOME/src #make new src dir
+      - cd $HOME/src #go to src dir
+      - git clone https://github.com/gohugoio/hugo.git #clone hugo
+      - cd hugo #go to hugo dir
+      - go install --tags extended #use go to install extended hugo
+    finally:
+      - echo Installation done
+  build:
+    commands:
+      - echo Building...
+      - echo Build started on `date`
+      - cd $CODEBUILD_SRC_DIR
+      - hugo --quiet
+      - aws s3 sync public/ s3://roger-yu.com --acl public-read --delete
+      - aws cloudfront create-invalidation --distribution-id E25KNJZ1CGJ3BY --paths "/*"
+    finally:
+      - echo Build finished
+artifacts:
+  files:
+    - "**/*"
+  base-directory: $CODEBUILD_SRC_DIR/public
+  discard-paths: no
