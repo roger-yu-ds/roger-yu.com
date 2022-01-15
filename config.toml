@@ -1,6 +1,6 @@
 baseurl = "https://example.org/"
 languageCode = "en-us"
-title = "My Awesome Static Site"
+title = "Datafied Scientifications"
 # Define how many pages appear per site
 paginate = 10
 # Enable comments powered by Disqus by entering your disqus shortname
@@ -30,7 +30,7 @@ theme = "hugo-minimalist-theme"
     # create automatically.
     twitter   = "Mactuarchi"
     facebook  = ""
-    linkedin  = ""
+    linkedin  = "roger-yu"
     behance   = ""
     dribbble  = ""
     instagram = ""
